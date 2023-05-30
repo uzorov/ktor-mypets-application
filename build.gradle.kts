@@ -13,9 +13,7 @@ plugins {
     id("org.jetbrains.kotlin.plugin.serialization") version "1.8.21"
 }
 
-application {
-    mainClass.set("com.example.Application")
-}
+
 
 ktor {
     fatJar {
@@ -50,4 +48,8 @@ dependencies {
     implementation("org.jetbrains.exposed:exposed-core:$exposed_version")
     implementation("org.jetbrains.exposed:exposed-dao:$exposed_version")
     implementation("org.jetbrains.exposed:exposed-jdbc:$exposed_version")
+}
+
+tasks.create("stage") {
+    dependsOn("installDist")
 }
