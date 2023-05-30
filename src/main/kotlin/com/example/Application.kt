@@ -21,9 +21,9 @@ fun main() {
 }
 
 fun Application.module() {
+    configureRouting()
     configureSerialization()
     configureDatabases()
     configureLoginRouting()
-    configureRouting()
     configureRegistrationRouting()
 }
