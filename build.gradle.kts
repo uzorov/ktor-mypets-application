@@ -1,14 +1,26 @@
+import org.gradle.kotlin.dsl.application
+
 val ktor_version: String by project
 val kotlin_version: String by project
 val logback_version: String by project
-val postgres_version : String by project
-val h2_version : String by project
-val exposed_version : String by project
+val postgres_version: String by project
+val h2_version: String by project
+val exposed_version: String by project
 
 plugins {
     kotlin("jvm") version "1.8.21"
     id("io.ktor.plugin") version "2.3.0"
-                id("org.jetbrains.kotlin.plugin.serialization") version "1.8.21"
+    id("org.jetbrains.kotlin.plugin.serialization") version "1.8.21"
+}
+
+application {
+    mainClass.set("com.example.Application")
+}
+
+ktor {
+    fatJar {
+        archiveFileName.set("fat.jar")
+    }
 }
 
 group = "com.example"

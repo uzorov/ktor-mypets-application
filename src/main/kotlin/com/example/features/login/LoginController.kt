@@ -27,7 +27,7 @@ class LoginController (private val call: ApplicationCall) {
                     phone_number = loginReceive.login,
                     token = token
                 ))
-                
+
                 call.respond(LoginResponseRemote(token = token))
             }
             else {
