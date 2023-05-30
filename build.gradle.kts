@@ -14,6 +14,13 @@ plugins {
 }
 
 
+application {
+    mainClass.set("com.example.ApplicationKt")
+
+    val isDevelopment: Boolean = project.ext.has("development")
+    applicationDefaultJvmArgs = listOf("-Dio.ktor.development=$isDevelopment")
+}
+
 
 ktor {
     fatJar {
@@ -23,12 +30,7 @@ ktor {
 
 group = "com.example"
 version = "0.0.1"
-application {
-    mainClass.set("com.example.ApplicationKt")
 
-    val isDevelopment: Boolean = project.ext.has("development")
-    applicationDefaultJvmArgs = listOf("-Dio.ktor.development=$isDevelopment")
-}
 
 repositories {
     mavenCentral()
@@ -52,4 +54,10 @@ dependencies {
 
 tasks.create("stage") {
     dependsOn("installDist")
+}
+
+tasks.withType<Jar> {
+    manifest {
+        attributes["Main-Class"] = "com.example.ApplicationKt"
+    }
 }
