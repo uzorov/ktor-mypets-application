@@ -3,6 +3,8 @@ package com.example.features.login
 import com.example.data.model.Animal
 import com.example.temp_data.InMemoryCash
 import com.example.temp_data.TokenCash
+import io.ktor.client.*
+import io.ktor.client.plugins.logging.*
 import io.ktor.http.*
 import io.ktor.server.application.*
 import io.ktor.server.request.*
@@ -13,6 +15,7 @@ import java.util.*
 fun Application.configureLoginRouting() {
     routing {
         post("/login") {
+
 
 
             val loginController = LoginController(call)

@@ -28,6 +28,7 @@ repositories {
 
 dependencies {
     implementation("io.ktor:ktor-server-core-jvm:$ktor_version")
+    implementation ("io.ktor:ktor-utils:$ktor_version")
     implementation("io.ktor:ktor-serialization-kotlinx-json-jvm:$ktor_version")
     implementation("io.ktor:ktor-server-content-negotiation-jvm:$ktor_version")
     implementation("org.postgresql:postgresql:$postgres_version")
@@ -40,5 +41,8 @@ dependencies {
     implementation("org.jetbrains.exposed:exposed-core:$exposed_version")
     implementation("org.jetbrains.exposed:exposed-dao:$exposed_version")
     implementation("org.jetbrains.exposed:exposed-jdbc:$exposed_version")
+
+    implementation("ch.qos.logback:logback-classic:$logback_version")
+    implementation("io.ktor:ktor-client-logging:$ktor_version")
 }
 
