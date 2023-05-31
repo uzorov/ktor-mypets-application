@@ -10,8 +10,8 @@ import org.jetbrains.exposed.sql.Database
 import java.sql.Connection
 import java.sql.DriverManager
 
-
-const val DATABASE_URL = "jdbc:postgresql://localhost:7366/railway"
+//postgresql://postgres:pBeAB2Iq3MTjyFKwPbAp@containers-us-west-66.railway.app:7366/railway
+const val DATABASE_URL = "jdbc:postgresql://containers-us-west-66.railway.app:7366/railway"
 const val PORT = "7366"
 const val DATABASE_NAME = "railway"
 const val USER_NAME = "postgres"
@@ -19,8 +19,10 @@ const val PASSWORD = "pBeAB2Iq3MTjyFKwPbAp"
 fun main() {
 
 
-    Database.connect(DATABASE_URL, driver = "org.postgresql.Driver",
-        user = USER_NAME, password = PASSWORD)
+  Database.connect(DATABASE_URL, driver = "org.postgresql.Driver",
+       user = USER_NAME, password = PASSWORD)
+
+
 
     embeddedServer(Netty, port = 8080, host = "0.0.0.0", module = Application::module)
         .start(wait = true)
@@ -28,9 +30,9 @@ fun main() {
 
 
 class DatabaseConnection {
-    private val jdbcUrl = "jdbc:postgresql://localhost:5432/Railway_Reservation"
+    private val jdbcUrl = "jdbc:postgresql://postgres:pBeAB2Iq3MTjyFKwPbAp@containers-us-west-66.railway.app:7366/railway"
     private val username = "postgres"
-    private val password = "aakash26"
+    private val password = "pBeAB2Iq3MTjyFKwPbAp"
 
     @get:Throws(Exception::class)
     val connection: Connection
