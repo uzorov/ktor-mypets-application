@@ -28,8 +28,8 @@ fun main() {
 
 fun Application.module() {
     configureRouting()
-    configureSerialization()
-    configureDatabases()
+    //configureSerialization()
+    //configureDatabases()
     //configureLoginRouting()
     //configureRegistrationRouting()
 }
