@@ -11,7 +11,7 @@ import java.sql.Connection
 import java.sql.DriverManager
 
 //postgresql://postgres:pBeAB2Iq3MTjyFKwPbAp@containers-us-west-66.railway.app:7366/railway
-const val DATABASE_URL = "jdbc:postgresql://localhost:7366/railway"
+const val DATABASE_URL = "jdbc:postgresql://containers-us-west-66.railway.app:7366/railway"
 const val PORT = "7366"
 const val DATABASE_NAME = "railway"
 const val USER_NAME = "postgres"
