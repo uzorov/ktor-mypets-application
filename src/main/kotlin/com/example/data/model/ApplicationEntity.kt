@@ -2,7 +2,7 @@ package com.example.mypetsapplications.database.model
 
 import com.example.data.model.Animal
 import com.example.data.model.Employee
-import com.example.data.model.User
+import com.example.features.users.UserResponse
 import kotlinx.serialization.Serializable
 
 object ApplicationStatus {
@@ -14,8 +14,7 @@ object ApplicationStatus {
 
 @Serializable
 data class Application(
-    val idNumber: Int = -1,
-    val client: User = User(),
+    val client: UserResponse = UserResponse(),
     val animal: Animal = Animal(),
     val hosingConditions: String = "",
     val aboutTheClient: String = "",

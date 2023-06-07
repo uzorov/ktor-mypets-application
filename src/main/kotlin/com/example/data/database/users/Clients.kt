@@ -7,12 +7,13 @@ import org.jetbrains.exposed.sql.transactions.transaction
 import java.lang.Exception
 
 object Clients: Table("client") {
-    private val name = Clients.text("name")
-    private val mail = Clients.text("mail")
-    private val phone_number = Clients.text("phone_number")
-    private val password = Clients.text("password")
+    val id = Clients.integer("clientid")
+    val name = Clients.text("name")
+    val mail = Clients.text("mail")
+    val phone_number = Clients.text("phone_number")
+    val password = Clients.text("password")
 
-    fun insert(userDTO: UserDTO) {
+    fun insert(userDTO: UserWithoutIdDTO) {
         transaction {
             Clients.insert { table ->
                 table[name] = userDTO.name
@@ -24,24 +25,28 @@ object Clients: Table("client") {
     }
 
     fun fetchUser(phoneNumber: String) : UserDTO? {
-       return try {
-            transaction {
-                val userModel = Clients.select {
-                    Clients.phone_number.eq(phoneNumber)
-                }.single()
+        var userDTO: UserDTO? = null
 
-                UserDTO(
-                    name = userModel[Clients.name],
-                    mail = userModel[Clients.mail],
-                    phone_number = userModel[Clients.phone_number],
-                    password = userModel[Clients.password]
-                )
+            transaction {
+
+                try {
+                    val userModel = Clients.select {
+                        Clients.phone_number.eq(phoneNumber)
+                    }.single()
+
+                    userDTO = UserDTO(
+                        id = userModel[Clients.id],
+                        name = userModel[Clients.name],
+                        mail = userModel[Clients.mail],
+                        phone_number = userModel[Clients.phone_number],
+                        password = userModel[Clients.password]
+                    )
+                }
+                catch (e: NoSuchElementException) {
+                    e.printStackTrace()
+                }
             }
-        }
-        catch (e: Exception)
-        {
-            e.printStackTrace()
-            null
-        }
+
+        return userDTO
     }
 }

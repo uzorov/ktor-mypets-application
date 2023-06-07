@@ -1,5 +1,6 @@
 package com.example.features.registration
 
+import com.example.data.database.users.Clients
 import com.example.data.model.Animal
 import com.example.temp_data.InMemoryCash
 import com.example.temp_data.TokenCash
@@ -17,8 +18,6 @@ fun Application.configureRegistrationRouting() {
 
             val registerController = RegisterController(call)
             registerController.registerNewUser()
-
-
         }
     }
 }

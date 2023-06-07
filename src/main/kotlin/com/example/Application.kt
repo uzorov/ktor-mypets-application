@@ -1,23 +1,24 @@
 package com.example
 
+import com.example.features.animals.configureAnimalRouting
+import com.example.features.applications.configureApplicationRouting
+import com.example.features.employee.configureEmployeeRouting
 import com.example.features.login.configureLoginRouting
 import com.example.features.registration.configureRegistrationRouting
-import com.example.plugins.*
-import io.ktor.client.*
-import io.ktor.client.plugins.logging.*
+import com.example.features.users.configureUsersFetchingRouting
+import com.example.plugins.configureRouting
+import com.example.plugins.configureSerialization
 import io.ktor.server.application.*
 import io.ktor.server.engine.*
 import io.ktor.server.netty.*
 import org.jetbrains.exposed.sql.Database
-import java.sql.Connection
-import java.sql.DriverManager
 
 //const val PORT = "7366"
 //const val DATABASE_NAME = "railway"
 //postgresql://postgres:pBeAB2Iq3MTjyFKwPbAp@containers-us-west-66.railway.app:7366/railway
-const val DATABASE_URL = "jdbc:postgresql://containers-us-west-66.railway.app:7366/railway"
+const val DATABASE_URL = "jdbc:postgresql://localhost:5432/mypets"
 const val USER_NAME = "postgres"
-const val PASSWORD = "pBeAB2Iq3MTjyFKwPbAp"
+const val PASSWORD = "uzorov"
 fun main() {
 
 
@@ -28,31 +29,16 @@ fun main() {
 }
 
 
-class DatabaseConnection {
 
-    private val client = HttpClient {
-        install(Logging) {
-            logger = Logger.DEFAULT
-            level = LogLevel.ALL
-        }
-    }
-
-    private val jdbcUrl = "jdbc:postgresql://postgres:pBeAB2Iq3MTjyFKwPbAp@containers-us-west-66.railway.app:7366/railway"
-    private val username = "postgres"
-    private val password = "pBeAB2Iq3MTjyFKwPbAp"
-
-    @get:Throws(Exception::class)
-    val connection: Connection
-        get() {
-            Class.forName("org.postgresql.Driver")
-            return DriverManager.getConnection(jdbcUrl, username, password)
-        }
-}
 
 fun Application.module() {
     configureRouting()
     configureSerialization()
-    //configureDatabases()
+
     configureLoginRouting()
     configureRegistrationRouting()
+    configureUsersFetchingRouting()
+    configureEmployeeRouting()
+    configureAnimalRouting()
+    configureApplicationRouting()
 }

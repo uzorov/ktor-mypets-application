@@ -12,5 +12,9 @@ data class RegistrationReceive (
 
 @Serializable
 data class RegistrationResponse (
-    val token: String
+    val token: String,
+    val isAdmin: Boolean,
+    val isPasswordCorrect: Boolean,
+    val isPhoneNumberValid: Boolean,
+    val isPasswordValid: Boolean
 )
